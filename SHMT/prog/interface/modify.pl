@@ -17,18 +17,18 @@
 #  along with this program; if not, write to the Free Software
 #  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-$SCLINSTALLDIR = $ARGV[0];
+use FindBin qw($RealBin);
 
-require "$SCLINSTALLDIR/SHMT/prog/interface/modify_mo_fn.pl";
+$PWD = $RealBin;
+
+require "$PWD/modify_mo_fn.pl";
 
 while ( $in = <STDIN> ) {
     chomp $in;
+
     $in = &modify_mo($in);
     $in =~ s/<kqw_vrb_rt:([^>]+)>< upasarga:([^>]+)>/$2_$1/g;
     $in =~ s/<kqw_vrb_rt:([^>]+)>/$1/g;
-
-    $in =~ s/^[^\/]+<level:0>//;
-    $in =~ s/\/[^\/]+<level:0>//g;
 
     # $in =~ s/^[^<]+<level:4>//;
     # $in =~ s/\/[^<]+<level:4>//g;

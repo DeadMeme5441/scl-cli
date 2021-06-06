@@ -8,13 +8,15 @@ import pathlib
 import subprocess
 
 path = pathlib.Path(__file__).parent.absolute()
-path = str(path)
+path = str(path.parents[0])
+path = path + "/converters"
 
 
 def convert_to_wx(encoding, in_word):
     in_word = in_word.strip()
     in_word = in_word + "\n"
     conversion_prog = ""
+
     if encoding == "VH":
         conversion_prog = path + "/velthuis-wx.out"
     elif encoding == "KH":
@@ -38,9 +40,8 @@ def convert_to_wx(encoding, in_word):
     res, err = proc.communicate(input=bytes(in_word, "utf-8"))
     res = res.decode("utf-8").rstrip("\n")
     err = err.decode("utf-8").rstrip("\n")
-    print(res, flush=True)
-    sys.stderr.write(err)
-    sys.stderr.flush()
+
+    return res
 
 
 def convert_from_wx(encoding, in_word):
@@ -82,9 +83,8 @@ def convert_from_wx(encoding, in_word):
         res = str(res)
 
     err = err.decode("utf-8").rstrip("\n")
-    print(res, flush=True)
-    sys.stderr.write(err)
-    sys.stderr.flush()
+
+    return res
 
 
 if __name__ == "__main__":
@@ -107,6 +107,6 @@ if __name__ == "__main__":
         raise TypeError("Input word must be a non-null string literal")
 
     if out_encoding == "WX":
-        convert_to_wx(in_encoding, in_word)
+        print(convert_to_wx(in_encoding, in_word), flush=True)
     elif out_encoding != "WX":
-        convert_from_wx(out_encoding, in_word)
+        print(convert_from_wx(out_encoding, in_word), flush=True)
