@@ -17,6 +17,9 @@ RUN cp -r converters convertersbak
 RUN cd converters \
     && make
 
+RUN cd SHMT/prog/sandhi_splitter \
+    && make
+
 EXPOSE 8080
 
 CMD ["node","app.js"]

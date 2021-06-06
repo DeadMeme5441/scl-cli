@@ -88,4 +88,47 @@ app.post("/morph/word", (req, res) => {
   });
 });
 
+app.post("/sandhi/split/word", (req, res) => {
+  let { in_encoding, out_encoding, in_word } = req.body;
+
+  var dataToSend;
+  var dataErr;
+  var dataFromScript;
+
+  const python = spawn("python3", [
+    "-u",
+    "./scripts/sandhi_split.py",
+    in_encoding,
+    out_encoding,
+    in_word,
+  ]);
+
+  python.stdout.on("data", function (data) {
+    console.log("Output : " + data);
+    dataFromScript = data.toString();
+    dataFromScript = dataFromScript.replace(/\r?\n|\r/g, "");
+    dataToSend = dataFromScript.split(",");
+  });
+
+  python.stderr.on("data", function (data) {
+    console.log("Error : " + data);
+    dataErr = data.toString();
+  });
+
+  python.on("close", (code) => {
+    if (code === 0) {
+      res.json({
+        status: 200,
+        output: dataToSend,
+      });
+    } else {
+      res.json({
+        status: 500,
+        output: dataToSend,
+        error: dataErr,
+      });
+    }
+  });
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

@@ -15,5 +15,6 @@
 #  along with this program; if not, write to the Free Software
 #  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-SCLINSTALLDIR=$PWD
-$SCLINSTALLDIR/converters/utf82iscii.pl | $SCLINSTALLDIR/converters/ir_skt
+SCLINSTALLDIR=$(dirname $0)
+
+$SCLINSTALLDIR/utf82iscii.pl | $SCLINSTALLDIR/ir_skt
