@@ -13,7 +13,7 @@ def split_samaasa(in_word, in_encoding, out_encoding):
 
     if in_encoding != "WX":
         in_word = convert.convert_to_wx(in_encoding, in_word)
-
+    in_word = convert.normalize(in_word)
     main_path = path + "/SHMT/prog/sandhi_splitter"
     bin_path = path + "/morph_bin/samAsa_splitter.bin"
 
@@ -43,7 +43,7 @@ def split_samaasa(in_word, in_encoding, out_encoding):
     output = out.stdout
     output = output.decode("utf-8")
 
-    outfile = open("sam_output.txt", "w")
+    outfile = open(main_path + "sam_most_probable_output.txt", "w")
     outfile.write(output)
     outfile.close()
 

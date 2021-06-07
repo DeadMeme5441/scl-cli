@@ -10,6 +10,7 @@ import subprocess
 path = pathlib.Path(__file__).parent.absolute()
 path = str(path.parents[0])
 path = path + "/converters"
+norm_path = path + "/SHMT/prog/Normalisation"
 
 
 def convert_to_wx(encoding, in_word):
@@ -85,6 +86,21 @@ def convert_from_wx(encoding, in_word):
     err = err.decode("utf-8").rstrip("\n")
 
     return res
+
+
+def normalize(in_word):
+
+    proc = subprocess.Popen(
+        [norm_path + "/get_std_spelling.out"],
+        shell=True,
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+    )
+
+    res, err = proc.communicate(input=bytes(in_word, "utf-8"))
+    output = res.decode("utf-8").rstrip("\n")
+
+    return output
 
 
 if __name__ == "__main__":
