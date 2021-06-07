@@ -20,6 +20,9 @@ RUN cd converters \
 RUN cd SHMT/prog/sandhi_splitter \
     && make
 
+RUN cd SHMT/prog/Normalisation \
+    && make
+
 EXPOSE 8080
 
 CMD ["node","app.js"]
