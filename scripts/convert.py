@@ -8,9 +8,9 @@ import pathlib
 import subprocess
 
 path = pathlib.Path(__file__).parent.absolute()
-path = str(path.parents[0])
-path = path + "/converters"
-norm_path = path + "/SHMT/prog/Normalisation"
+base_path = str(path.parents[0])
+path = base_path + "/converters"
+norm_path = base_path + "/SHMT/prog/Normalisation"
 
 
 def convert_to_wx(encoding, in_word):

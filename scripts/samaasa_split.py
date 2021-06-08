@@ -43,7 +43,7 @@ def split_samaasa(in_word, in_encoding, out_encoding):
     output = out.stdout
     output = output.decode("utf-8")
 
-    outfile = open(main_path + "sam_most_probable_output.txt", "w")
+    outfile = open(main_path + "/sam_most_probable_output.txt", "w")
     outfile.write(output)
     outfile.close()
 
@@ -67,7 +67,7 @@ def split_samaasa(in_word, in_encoding, out_encoding):
     finout.close()
     output = ""
 
-    with open(main_path + "/sam_finout.txt", "r") as finalout:
+    with open(main_path + "/sam_most_probable_output.txt", "r") as finalout:
         for line in finalout:
             con = line.strip()
             output += convert.convert_from_wx(out_encoding, con)

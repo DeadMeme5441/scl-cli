@@ -45,7 +45,7 @@ def split_sandhi(in_word, in_encoding, out_encoding):
     output = out.stdout
     output = output.decode("utf-8")
 
-    outfile = open(main_path + "san_most_probable_output.txt", "w")
+    outfile = open(main_path + "/san_most_probable_output.txt", "w")
     outfile.write(output)
     outfile.close()
 
