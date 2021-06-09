@@ -16,8 +16,6 @@ def get_morph(in_word, in_encoding, out_encoding):
     if in_encoding != "WX":
         in_word = convert.convert_to_wx(in_encoding, in_word)
 
-    print(in_word)
-
     all_morf_path = "lt-proc " + path + "/morph_bin/all_morf.bin "
 
     morph1 = subprocess.Popen(
@@ -38,7 +36,6 @@ def get_morph(in_word, in_encoding, out_encoding):
     in_word = re.sub(r"^.*=\*.*", "", in_word, 1)
     in_word = re.sub(r".*=", "", in_word, 1)
     in_word = re.sub(r"^^", "", in_word, 1)
-    print(in_word + "\n")
 
     modify_path = path + "/SHMT/prog/interface/modify.pl"
     modify = subprocess.Popen(
@@ -63,8 +60,6 @@ def get_morph(in_word, in_encoding, out_encoding):
     in_word = re.sub(r"<", "{", in_word)
     in_word = re.sub(r">", "}", in_word)
     in_word = re.sub(r":", " ", in_word)
-
-    print(in_word)
 
     if out_encoding != "WX":
         output = convert.convert_from_wx(out_encoding, in_word)
