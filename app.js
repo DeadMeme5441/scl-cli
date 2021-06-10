@@ -29,7 +29,7 @@ app.post("/convert/word", (req, res) => {
       res.json({
         status: 500,
         output: "",
-        error: err,
+        error: err.toString(),
       });
     });
 });
@@ -48,7 +48,7 @@ app.post("/morph/word", (req, res) => {
       res.json({
         status: 500,
         output: "",
-        error: err,
+        error: err.toString(),
       });
     });
 });
@@ -67,7 +67,7 @@ app.post("/sandhi/split", (req, res) => {
       res.json({
         status: 500,
         output: "",
-        error: err,
+        error: err.toString(),
       });
     });
 });
@@ -86,7 +86,7 @@ app.post("/samaasa/split", (req, res) => {
       res.json({
         status: 500,
         output: "",
-        error: err,
+        error: err.toString(),
       });
     });
 });

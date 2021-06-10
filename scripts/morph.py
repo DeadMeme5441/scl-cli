@@ -61,6 +61,7 @@ def get_morph(in_word, in_encoding, out_encoding):
     in_word = re.sub(r">", "}", in_word)
     in_word = re.sub(r":", " ", in_word)
 
+    output = in_word
     if out_encoding != "WX":
         output = convert.convert_from_wx(out_encoding, in_word)
 
