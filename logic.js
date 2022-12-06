@@ -13,7 +13,7 @@ const convert = async (in_encoding, out_encoding, in_word) => {
     // console.log(python.toString());
     return await python.toString();
   } catch (e) {
-    console.log(e.toString());
+    // console.log(e.toString());
   }
 };
 
@@ -29,7 +29,7 @@ const morph = async (in_encoding, out_encoding, in_word) => {
     // console.log(python.toString());
     return await python.toString();
   } catch (e) {
-    console.log(e.toString());
+    // console.log(e.toString());
   }
 };
 
@@ -45,7 +45,7 @@ const sandhi_split = async (in_encoding, out_encoding, in_word) => {
     // console.log(python.toString());
     return await python.toString();
   } catch (e) {
-    console.log(e.toString());
+    // console.log(e.toString());
   }
 };
 
@@ -61,7 +61,7 @@ const samaasa_split = async (in_encoding, out_encoding, in_word) => {
     // console.log(python.toString());
     return await python.toString();
   } catch (e) {
-    console.log(e.toString());
+    // console.log(e.toString());
   }
 };
 
@@ -96,7 +96,7 @@ const shloka_parse = async (in_encoding, out_encoding, in_shloka) => {
             .toString()
             .replace(/\r?\n|\r/g, "")
             .split(",")[0];
-          console.log(res);
+          // console.log(res);
         });
       }
     })
@@ -111,7 +111,7 @@ const shloka_parse = async (in_encoding, out_encoding, in_shloka) => {
             .toString()
             .replace(/\r?\n|\r/g, "")
             .split(",")[0];
-          console.log(res);
+          // console.log(res);
         });
       }
     })
@@ -139,8 +139,8 @@ const shloka_parse = async (in_encoding, out_encoding, in_shloka) => {
     }
   });
   samaasa_shloka += number;
-  console.log(sandhi_shloka);
-  console.log(samaasa_shloka);
+  // console.log(sandhi_shloka);
+  // console.log(samaasa_shloka);
   return {
     original_shloka: in_shloka,
     sandhi_shloka: sandhi_shloka,
