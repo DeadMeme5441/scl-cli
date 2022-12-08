@@ -9,12 +9,12 @@ import grequests
 def morph_list(
     in_encoding,
     out_encoding,
-    file_path,
+    file_name,
 ):
 
     URL = "http://localhost:8080/morph/word"
     main_path = str(pathlib.Path(__file__).parent.absolute())
-    file_path = main_path + "/" + file_path
+    file_path = main_path + "/" + file_name.split("./")[1]
     res_dict = {}
     with open(file_path, "r") as file_path:
         for line in file_path:
@@ -28,7 +28,15 @@ def morph_list(
             res = res.json()
             res_dict[line] = res["output"]
 
-    with open("output.txt", "w", encoding="utf-8") as outfile:
+    output_path = (
+        main_path
+        + "/"
+        + "output"
+        + "/"
+        + file_name.split("/")[-1].split(".")[0]
+        + "_output.txt"
+    )
+    with open(output_path, "w", encoding="utf-8") as outfile:
         for key in res_dict:
             finkey = convert(in_encoding, out_encoding, key)
             if res_dict[key] == "":
